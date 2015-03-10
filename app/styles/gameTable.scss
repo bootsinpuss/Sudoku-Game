@@ -9,14 +9,15 @@
   font-family: Arial, sans-serif;
   font-weight: bold;
   margin-top: 1em;
+
+  td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 2.0em;
+    border: 2px solid #1fbad6;
+    padding: 0;
+    cursor: pointer;
+  }
 }
 
-td {
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  font-size: 2.0em;
-  border: 2px solid #1fbad6;
-  padding: 0;
-  cursor: pointer;
-}
