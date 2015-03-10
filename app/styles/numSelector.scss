@@ -1,0 +1,26 @@
+#numSelector {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  display: none;
+  max-width: 350px;
+  background-color: #689fce;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -o-border-radius: 20px;
+  -ms-border-radius: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 500;
+
+  .padNumbers {
+    text-align: center;
+    padding: 6px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Sudoku-Game",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "*"
+  },
+  "appPath": "app"
+}

@@ -1,12 +1,15 @@
 {
   "name": "Sudoku-Game",
+  "version": "1.0.0",
   "description": "A Simple Sudoku Game",
   "engines": {
     "node": ">=0.10.0"
   },
   "devDependencies": {
+    "bower": "*",
     "grunt": "*",
     "grunt-contrib-clean": "*",
+    "grunt-browserify": "*",
     "grunt-cli": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compass": "*",
