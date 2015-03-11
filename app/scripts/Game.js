@@ -1,5 +1,7 @@
 var Cell = require('./Cell');
 
+var gameSingleton = null;
+
 var solutionGrid = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
   [4, 5, 6, 7, 8, 9, 1, 2, 3],
@@ -99,7 +101,6 @@ var utils = {
     return arr;
 };
 
-
 function createGame (difficulty) {
   solutionGrid = utils.shuffle(solutionGrid);
   var cells = utils.createCells(solutionGrid),
@@ -131,7 +132,7 @@ function createGame (difficulty) {
 
   game.hideNumberSelector = function () {
     if (numSelector !== null) {
-      numSelector.show();
+      numSelector.hide();
     };
   };
 
@@ -139,5 +140,10 @@ function createGame (difficulty) {
 }
 
 module.exports = {
-
+  gameFactory: function (difficulty) {
+    if (gameSingleton === null) {
+      gameSingleton = createGame(difficulty);
+    }
+    return gameSingleton;
+  }
 };

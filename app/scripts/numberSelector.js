@@ -1,3 +1,5 @@
+var game = require('./game');
+
 var utils = {
   setupListeners: function (padNumbers, padCancel, game) {
 
@@ -14,7 +16,7 @@ var utils = {
 };
 
 
-function NumSelector (game) {
+function NumberSelector () {
   var padNumbers = $('#numSelector padNumber'),
     padCancel = $('#numSelector padCancel');
 
@@ -24,17 +26,15 @@ function NumSelector (game) {
   utils.setupListeners(padNumbers, padCancel, game);
 }
 
-NumSelector.prototype.show = function () {
+NumberSelector.prototype.show = function () {
   this.mask.show();
   this.element.fadeIn(100);
 };
 
-NumSelector.prototype.hide = function () {
+NumberSelector.prototype.hide = function () {
   this.element.fadeOut(100, function () {
     this.mask.hide();
   }.bind(this));
 };
 
-module.exports = function (game) {
-  return new NumSelector(game);
-}
+module.exports = new NumberSelector();
