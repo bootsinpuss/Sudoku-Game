@@ -1,7 +1,6 @@
 #numSelector {
   position: absolute;
   width: 50%;
-  height: 50%;
   background-color: #689fce;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -10,15 +9,33 @@
   border-radius: 20px;
   cursor: pointer;
   z-index: 500;
+  text-align: center;
 
-  .padNumbers {
-    text-align: center;
+  .pad {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     padding: 6px;
     line-height: 40px;
-    font-size: 20px;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
     cursor: pointer;
+    display: inline-block;
+  }
+
+  .padNumber {
+    @extend .pad;
+    width: 32%;
+
+    &:hover {
+      color: grey
+    }
+  }
+
+  .padCancel {
+    @extend .pad;
+    width: 100%;
+
+    &:hover {
+      color: pink
+    }
   }
 }

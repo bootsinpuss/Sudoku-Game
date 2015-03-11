@@ -51,5 +51,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('build', ['clean', 'compass', 'browserify']);
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['build', 'watch']);
 };
