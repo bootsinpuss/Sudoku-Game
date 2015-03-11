@@ -11,6 +11,7 @@
   cursor: pointer;
   z-index: 500;
   text-align: center;
+  background-color: rgba(0,0,0,0.5);
 
   .pad {
     -webkit-box-sizing: border-box;
@@ -20,6 +21,9 @@
     line-height: 40px;
     cursor: pointer;
     display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
   }
 
   .padNumber {
