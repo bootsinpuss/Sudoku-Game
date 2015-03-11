@@ -7,10 +7,9 @@ var utils = {
   }
 };
 
-function Cell (position, game) {
-  this.val = 0;
+function Cell (position, value, game) {
+  this.val = value;
   this.position = position;
-  this.state = false;
   this.element = utils.createCell(position);
   this.game = game;
 }
@@ -20,12 +19,14 @@ Cell.prototype.setToFixedCell = function(value) {
   this.addClass('fixedCell');
 };
 
-Cell.prototype.setToEmptyCell = function(value) {
+Cell.prototype.setToEmptyCell = function() {
   var game = this.game,
     self = this;
-  this.addClass('emptyCell');
-  this.element.on('click', function () {
-    game.selectedCell = self;
+
+  self.val = 0;
+  self.addClass('emptyCell');
+  self.element.on('click', function () {
+    game.selectCell(self);
     game.showNumberSelector();
   });
 };
