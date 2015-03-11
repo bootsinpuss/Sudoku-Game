@@ -1,4 +1,4 @@
-var game = require('./game');
+var numberSelectorSingleton = null;
 
 var utils = {
   setupListeners: function (padNumbers, padCancel, game) {
@@ -16,9 +16,9 @@ var utils = {
 };
 
 
-function NumberSelector () {
-  var padNumbers = $('#numSelector padNumber'),
-    padCancel = $('#numSelector padCancel');
+function NumberSelector (game) {
+  var padNumbers = $('#numSelector .padNumber'),
+    padCancel = $('#numSelector .padCancel');
 
   this.game = game;
   this.element = $('#numSelector');
@@ -37,4 +37,11 @@ NumberSelector.prototype.hide = function () {
   }.bind(this));
 };
 
-module.exports = new NumberSelector();
+module.exports = {
+  numberSelectorFactory: function (game) {
+    if (numberSelectorSingleton === null) {
+      numberSelectorSingleton = new NumberSelector(game);
+    }
+    return numberSelectorSingleton;
+  }
+};

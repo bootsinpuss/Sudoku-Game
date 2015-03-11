@@ -1,4 +1,5 @@
 var Cell = require('./Cell');
+var numberSelectorModule = require('./numberSelector');
 
 var gameSingleton = null;
 
@@ -79,34 +80,35 @@ var utils = {
   fillFixedCells: function (cells, count) {
     var index;
     while (count > 0) {
-      index = Math.floor(Math.ramdon() * 81);
-      cells[index/9][index%9].setToEmptyCell();
+      index = Math.floor(Math.random() * 81);
+      cells[Math.floor(index/9)][Math.floor(index%9)].setToEmptyCell();
       count--;
     }
   },
 
-  createCells: function (grid) {
+  createCells: function (grid, game) {
     var arr = [];
     for (var i = 0; i < 9; i++) {
       var columns = [];
-        for (var j = 0; j < 9; j++) {
-          columns[j] = new Cell({
-            x: i,
-            y: j
-          }, grid[i][j], game);
-        }
+      for (var j = 0; j < 9; j++) {
+        columns[j] = new Cell({
+          x: i,
+          y: j
+        }, game);
+        columns[j].setToFixedCell(grid[i][j]);
       }
       arr[i] = columns;
     }
     return arr;
+  }
 };
 
 function createGame (difficulty) {
+  var game = {};
   solutionGrid = utils.shuffle(solutionGrid);
-  var cells = utils.createCells(solutionGrid),
-    game = {},
+  var cells = utils.createCells(solutionGrid, game),
     selectedCell = null,
-    numSelector = null;
+    numSelector = numberSelectorModule.numberSelectorFactory(game);
 
   utils.fillFixedCells(cells, difficulty * 15);
 
@@ -117,7 +119,8 @@ function createGame (difficulty) {
   game.selectNumber = function (value) {
     if (selectedCell !== null) {
       selectedCell.setValue(value);
-    };
+      this.hideNumberSelector();
+    }
   };
 
   game.setNumberSelector = function (element) {
@@ -125,15 +128,11 @@ function createGame (difficulty) {
   };
 
   game.showNumberSelector = function () {
-    if (numSelector !== null) {
-      numSelector.show();
-    };
+    numSelector.show();
   };
 
   game.hideNumberSelector = function () {
-    if (numSelector !== null) {
-      numSelector.hide();
-    };
+    numSelector.hide();
   };
 
   return game;

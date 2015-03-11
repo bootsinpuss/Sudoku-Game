@@ -1,4 +1,6 @@
-var layoutHelper = require('./layoutHelper');
+var layoutHelper = require('./layoutHelper'),
+  gameModule = require('./game'),
+  numberSelectorModule = require('./numberSelector');
 
 function init (argument) {
   var tableWidth = $('#game-table').width();
@@ -7,5 +9,8 @@ function init (argument) {
 }
 
 $(document).ready(function(){
+  var game = gameModule.gameFactory(2),
+   numberSelector = numberSelectorModule.numberSelectorFactory(game);
+
   init();
 });
