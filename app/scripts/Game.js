@@ -104,7 +104,8 @@ function createGame (difficulty) {
   solutionGrid = utils.shuffle(solutionGrid);
   var cells = utils.createCells(solutionGrid),
     game = {},
-    selectedCell = null;
+    selectedCell = null,
+    numSelector = null;
 
   utils.fillFixedCells(cells, difficulty * 15);
 
@@ -112,8 +113,26 @@ function createGame (difficulty) {
     selectedCell = cell;
   };
 
+  game.selectNumber = function (value) {
+    if (selectedCell !== null) {
+      selectedCell.setValue(value);
+    };
+  };
+
+  game.setNumberSelector = function (element) {
+    numSelector = element;
+  };
+
   game.showNumberSelector = function () {
-    $('#numSelector').fadeOut(100);
+    if (numSelector !== null) {
+      numSelector.show();
+    };
+  };
+
+  game.hideNumberSelector = function () {
+    if (numSelector !== null) {
+      numSelector.show();
+    };
   };
 
   return game;

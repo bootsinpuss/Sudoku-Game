@@ -33,7 +33,7 @@ Cell.prototype.setToEmptyCell = function() {
 
 Cell.prototype.setValue = function(value) {
   this.val = value;
-  this.element.innerHTML = "" + value;
+  this.element.innerHTML = "" + value == 0 ? "" : value;
 };
 
 module.exports = Cell;
