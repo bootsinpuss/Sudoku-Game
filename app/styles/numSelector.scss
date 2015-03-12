@@ -1,23 +1,18 @@
+$border-color: #1fbad6;
+$primary-color: #070716;
+
 #numSelector {
   position: absolute;
   width: 50%;
   display: none;
-  background-color: #689fce;
-  -moz-border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -o-border-radius: 20px;
-  -ms-border-radius: 20px;
+  background-color: $primary-color;
   border-radius: 20px;
   cursor: pointer;
   z-index: 500;
   text-align: center;
-  background-color: rgba(0,0,0,0.5);
+  border: 2px solid $border-color;
 
   .pad {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 6px;
     line-height: 40px;
     cursor: pointer;
     display: inline-block;
@@ -31,7 +26,12 @@
     width: 32%;
 
     &:hover {
-      color: grey
+      color: $border-color;
+    }
+
+    >div {
+      margin: 10px 25px;
+      border-bottom: 2px solid $border-color;
     }
   }
 
@@ -40,7 +40,11 @@
     width: 100%;
 
     &:hover {
-      color: pink
+      color: red;
+    }
+
+    >div {
+      margin: 10px;
     }
   }
 }
