@@ -11,6 +11,14 @@
   text-align: center;
   border: 2px solid $line-color;
 
+  @media (max-width: $break-small) {
+    top: 150px;
+  }
+
+  @media (min-width: $break-small + 1) {
+    top: 320px;
+  }
+
   .pad {
     line-height: 40px;
     cursor: pointer;
@@ -22,13 +30,16 @@
 
   .padNumber {
     @extend .pad;
-    width: 32%;
+    width: 31%;
 
     &:hover {
       color: $line-color;
     }
 
     >div {
+      @media (max-width: $break-small) {
+        margin: 10px;
+      }
       margin: 10px 25px;
       border-bottom: 2px solid $line-color;
     }

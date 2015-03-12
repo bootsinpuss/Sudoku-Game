@@ -9,8 +9,7 @@ function configCellWidth (tableWidth) {
 function setupNumberSelectorLayout (tableWidth) {
   var fit = Math.floor((tableWidth)/4);
   $('#numSelector').css({
-    left: fit,
-    top: fit
+    left: fit
   });
 }
 

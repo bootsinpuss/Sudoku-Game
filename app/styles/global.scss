@@ -1,5 +1,6 @@
 $line-color: #1fbad6;
-$primary-color: #070716;
+$primary-color: rgba(0,0,0,.7);
+$break-small: 400px;
 
 @mixin setting {
   box-sizing: border-box;
