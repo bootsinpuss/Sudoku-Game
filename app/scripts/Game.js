@@ -107,13 +107,15 @@ function createCells (grid, game, difficulty, shuffle) {
   return arr;
 }
 
-function createGame (difficulty) {
+function createGame () {
   var game = {
     tableElement: $('#game-table')
   };
 
   var selectedCell = null,
+    difficulty = 2;
     numSelector = numberSelectorModule.numberSelectorFactory(game),
+    difficultySelector = $('#difficulty'),
     cells = createCells(solutionGrid, game, difficulty, true);
 
   game.selectCell = function (cell) {
@@ -139,7 +141,12 @@ function createGame (difficulty) {
     numSelector.hide();
   };
 
-  game.reset = function (shuffle) {
+  game.setDifficulty = function () {
+    difficulty = parseInt(difficultySelector.val());
+    this.resetGame();
+  };
+
+  game.resetGame = function () {
     var self = this;
     self.hideNumberSelector();
     cells.forEach(function (row) {
@@ -147,9 +154,19 @@ function createGame (difficulty) {
         cell.destroy();
       })
     });
-    cells = createCells(solutionGrid, self, difficulty, shuffle);
+    cells = createCells(solutionGrid, self, difficulty);
     selectedCell = null;
-  }
+  };
+
+  game.retryGame = function () {
+    for (var i = 0; i < 9; i++) {
+      for (var j = 0; j < 9; j++) {
+        if (cells[i][j].shouldBeReset()) {
+          cells[i][j].setValue(0);
+        }
+      }
+    }
+  };
 
   return game;
 }

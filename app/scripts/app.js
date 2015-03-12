@@ -9,7 +9,15 @@ function init (argument) {
 
 function setupButtonHandlers (game) {
   $('#reset-game').on('click', function () {
-    game.reset();
+    game.resetGame();
+  });
+
+  $('#retry-game').on('click', function () {
+    game.retryGame();
+  });
+
+  $('#difficulty').on('change', function () {
+    game.setDifficulty();
   });
 }
 

@@ -19,23 +19,11 @@
         display: block;
         margin-top: 10px;
       }
-
-      select {
-        @include setting();
-      }
     }
 
     .options {
       width: 100px;
       float: right;
-
-      #reset-game {
-        @include setting();
-      }
-
-      #show-solution {
-        @include setting();
-      }
     }
 
     .clearfix {

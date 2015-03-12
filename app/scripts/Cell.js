@@ -21,10 +21,16 @@ function Cell (position, game) {
   this.position = position;
   this.element = utils.createCell(position, game);
   this.game = game;
+  this.state = 'empty';
 }
+
+Cell.prototype.shouldBeReset = function() {
+  return this.state === 'filled';
+};
 
 Cell.prototype.setToFixedCell = function(value) {
   this.setValue(value);
+  this.state = 'fixed';
   this.element.addClass('fixedCell').removeClass('emptyCell');
 };
 
@@ -43,6 +49,7 @@ Cell.prototype.setToEmptyCell = function() {
 Cell.prototype.setValue = function(value) {
   this.val = value;
   this.element.html("" + value == 0 ? "" : value);
+  this.state = value === 0 ? 'empty' : 'filled';
 };
 
 Cell.prototype.destroy = function () {
