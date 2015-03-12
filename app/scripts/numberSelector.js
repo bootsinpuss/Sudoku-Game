@@ -22,19 +22,15 @@ function NumberSelector (game) {
 
   this.game = game;
   this.element = $('#numSelector');
-  this.mask = $('#selectorMask');
   utils.setupListeners(padNumbers, padCancel, game);
 }
 
 NumberSelector.prototype.show = function () {
-  this.mask.show();
-  this.element.fadeIn(100);
+  this.element.show();
 };
 
 NumberSelector.prototype.hide = function () {
-  this.element.fadeOut(100, function () {
-    this.mask.hide();
-  }.bind(this));
+  this.element.hide();
 };
 
 module.exports = {

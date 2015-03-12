@@ -11,7 +11,23 @@
 </head>
 
 <body>
-	<section id="sudoku-game-container">
+  <section id="sudoku-game-container">
+    <header>
+      <form class="difficulty-select">
+        <label for="difficulty">Sudoku Game</label>
+        <select id="difficulty">
+          <option value="2">Beginner</option>
+          <option value="3">Professional</option>
+          <option value="4">Superstar</option>
+        </select>
+      </form>
+      <div class="options">
+        <div id="reset-game">Reset</div>
+        <div id="show-solution">Solution</div>
+        <div></div>
+      </div>
+      <div class="clearfix"></div>
+    </header>
     <div id='numSelector'>
       <div>
         <div id="ns1" class='padNumber' value='1'><div>1</div></div>
