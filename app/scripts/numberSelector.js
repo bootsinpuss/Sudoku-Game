@@ -1,3 +1,5 @@
+var model = require('./model');
+
 var numberSelectorSingleton = null;
 
 var utils = {
@@ -25,6 +27,7 @@ function NumberSelector (game) {
   this.element.css({
     left: Math.floor((game.tableElement.width())/4)
   });
+  this.padNumbers = padNumbers;
   utils.setupListeners(padNumbers, padCancel, game);
 }
 

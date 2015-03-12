@@ -102,6 +102,52 @@ function resetCells () {
   }
 }
 
+function isValidFill (x, y, value) {
+  var copy = cells[x][y];
+    check = {},
+    i,
+    j,
+    subX,
+    subY,
+    check;
+
+  check = function (value) {
+    if (check[value]) {
+      cells[x][y].val = copy;
+      return false;
+    }
+    check[value] = true;
+    return true;
+  };
+
+  cells[x][y].val = value;
+  for (i = 0; i < 9; i++) {
+    if(!check(cells[i][j].val)) {
+      return false;
+    }
+  }
+
+  check = {};
+  for (i = 0; i < 9; i++) {
+    if(!check(cells[i][j].val)) {
+      return false;
+    }
+  }
+
+  check = {};
+  subX = Math.floor(x/3)*3;
+  subY = Math.floor(y/3)*3;
+  for (i = subX; i < subX + 3; i++) {
+    for (j = subY; j < subY + 3; j++) {
+      if(!check(cells[i][j].val)) {
+        return false;
+      }
+    }
+  }
+  cells[x][y].val = copy;
+  return true;
+}
+
 function createCells (game, difficulty) {
   var grid = solutionGrid;
   grid = shuffleGrid(grid);
@@ -126,5 +172,6 @@ function createCells (game, difficulty) {
 module.exports = {
   createCells: createCells,
   resetCells: resetCells,
-  destroyCells: destroyCells
+  destroyCells: destroyCells,
+  isValidFill: isValidFill
 };
