@@ -1,8 +1,17 @@
 var utils = {
-  createCell: function (position) {
-    var element = $('<td id="c' + position.x + 'x' + position.y + '"></td>'),
-      rows = $('#game-table tr');
-    element.appendTo(rows.eq(position.x));
+  createCell: function (position, game) {
+    var element = $('<td></td>'),
+      rows = game.tableElement.find('tr'),
+      tableWidth = game.tableElement.width(),
+      cellWidth = Math.floor((tableWidth)/9 - 4);
+
+    element
+    .css({
+      width: cellWidth,
+      height: cellWidth
+    })
+    .appendTo(rows.eq(position.x));
+
     return element;
   }
 };
@@ -10,13 +19,13 @@ var utils = {
 function Cell (position, game) {
   this.val = 0;
   this.position = position;
-  this.element = utils.createCell(position);
+  this.element = utils.createCell(position, game);
   this.game = game;
 }
 
 Cell.prototype.setToFixedCell = function(value) {
   this.setValue(value);
-  this.element.addClass('fixedCell');
+  this.element.addClass('fixedCell').removeClass('emptyCell');
 };
 
 Cell.prototype.setToEmptyCell = function() {
@@ -34,6 +43,10 @@ Cell.prototype.setToEmptyCell = function() {
 Cell.prototype.setValue = function(value) {
   this.val = value;
   this.element.html("" + value == 0 ? "" : value);
+};
+
+Cell.prototype.destroy = function () {
+  this.element.remove();
 };
 
 module.exports = Cell;

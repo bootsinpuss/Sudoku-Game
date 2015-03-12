@@ -22,6 +22,9 @@ function NumberSelector (game) {
 
   this.game = game;
   this.element = $('#numSelector');
+  this.element.css({
+    left: Math.floor((game.tableElement.width())/4)
+  });
   utils.setupListeners(padNumbers, padCancel, game);
 }
 
