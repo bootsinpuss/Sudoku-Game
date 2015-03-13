@@ -86,13 +86,19 @@ function shuffleGrid (grid) {
   return grid;
 }
 
-function fillFixedCells (cells, difficulty) {
-  var index;
-  difficulty *= 15;
+function generateEmptyCells (cells, difficulty) {
+  var index,
+    x,
+    y;
+  difficulty *= 12;
   while (difficulty > 0) {
     index = Math.floor(Math.random() * 81);
-    cells[Math.floor(index/9)][Math.floor(index%9)].setToEmptyCell();
-    difficulty--;
+    x = Math.floor(index/9);
+    y = Math.floor(index%9);
+    if (cells[x][y].val !== 0) {
+      cells[x][y].setToEmptyCell();
+      difficulty--;
+    }
   }
 }
 
@@ -188,7 +194,7 @@ function createCells (game, difficulty) {
     cells[i] = columns;
   }
 
-  fillFixedCells(cells, difficulty);
+  generateEmptyCells(cells, difficulty);
   return cells;
 }
 

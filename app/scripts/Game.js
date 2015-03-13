@@ -10,10 +10,11 @@ function createGame () {
   };
 
   var selectedCell = null,
-    difficulty = 2;
     numSelector = numberSelectorModule.numberSelectorFactory(game),
     difficultySelector = $('#difficulty'),
-    model.createCells(game, difficulty, true);
+    difficulty = parseInt(difficultySelector.val());
+
+  model.createCells(game, difficulty, true);
 
   game.selectCell = function (cell) {
     selectedCell = cell;
@@ -67,9 +68,9 @@ function createGame () {
 }
 
 module.exports = {
-  gameFactory: function (difficulty) {
+  gameFactory: function () {
     if (gameSingleton === null) {
-      gameSingleton = createGame(difficulty);
+      gameSingleton = createGame();
     }
     return gameSingleton;
   }
