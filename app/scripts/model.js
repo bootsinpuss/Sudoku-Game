@@ -128,7 +128,7 @@ function isValidFill (x, y, value) {
     subY;
 
   var check = function (value) {
-    if (value == 0) {
+    if (value === 0) {
       return true;
     }
     if (set[value]) {

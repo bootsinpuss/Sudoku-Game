@@ -2,14 +2,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      options: {
-        globals: {
-          jQuery: true
-        }
-      }
-    },
 
     clean: {
       dist: ['build']
@@ -32,6 +24,27 @@ module.exports = function(grunt) {
       }
     },
 
+    jshint: {
+      options: {
+        jshintrc: 'jshintrc.json',
+        reporter: require('jshint-stylish')
+      },
+
+      code: {
+        src: [
+          'Gruntfile.js',
+          'app/scripts/**/*.js'
+        ]
+      },
+
+      test: {
+        options: {
+          jshintrc: 'test/.jshintrc'
+        },
+        src: ['test/unit/**/*.js']
+      }
+    },
+
     watch: {
       styles: {
         files: 'app/styles/*.scss',
@@ -48,8 +61,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('build', ['clean', 'compass', 'browserify']);
   grunt.registerTask('default', ['build', 'watch']);
+  grunt.registerTask('lint', ['jshint:code']);
 };

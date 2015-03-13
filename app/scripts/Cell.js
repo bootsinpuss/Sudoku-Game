@@ -44,7 +44,7 @@ Cell.prototype.setToEmptyCell = function() {
 
 Cell.prototype.setValue = function(value) {
   this.val = value;
-  this.element.html("" + value == 0 ? "" : value);
+  this.element.html("" + value === 0 ? "" : value);
   this.state = value === 0 ? 'empty' : 'filled';
 };
 
