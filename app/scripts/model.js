@@ -90,7 +90,6 @@ function generateEmptyCells (cells, difficulty) {
   var index,
     x,
     y;
-  difficulty *= 12;
   while (difficulty > 0) {
     index = Math.floor(Math.random() * 81);
     x = Math.floor(index/9);
@@ -113,7 +112,7 @@ function destroyCells () {
 function resetCells () {
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
-      if (cells[i][j].shouldBeReset()) {
+      if (cells[i][j].state === 'filled') {
         cells[i][j].setValue(0);
       }
     }
@@ -121,7 +120,7 @@ function resetCells () {
 }
 
 function isValidFill (x, y, value) {
-  var copy = cells[x][y],
+  var copy = cells[x][y].val,
     set = {},
     i,
     j,
@@ -177,6 +176,16 @@ function copyGrid () {
   return gameGrid;
 }
 
+function showSolution (argument) {
+  for (var i = 0; i < 9; i++) {
+    for (var j = 0; j < 9; j++) {
+      if (cells[i][j].state === 'empty') {
+        cells[i][j].setValue(gameGrid[i][j]);
+      }
+    }
+  }
+}
+
 function createCells (game, difficulty) {
   var grid = copyGrid();
   grid = shuffleGrid(grid);
@@ -202,5 +211,6 @@ module.exports = {
   createCells: createCells,
   resetCells: resetCells,
   destroyCells: destroyCells,
-  isValidFill: isValidFill
+  isValidFill: isValidFill,
+  showSolution: showSolution
 };

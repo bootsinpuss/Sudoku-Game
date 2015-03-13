@@ -24,10 +24,6 @@ function Cell (position, game) {
   this.state = 'empty';
 }
 
-Cell.prototype.shouldBeReset = function() {
-  return this.state === 'filled';
-};
-
 Cell.prototype.setToFixedCell = function(value) {
   this.setValue(value);
   this.state = 'fixed';

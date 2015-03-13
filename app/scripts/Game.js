@@ -12,19 +12,34 @@ function createGame () {
   var selectedCell = null,
     numSelector = numberSelectorModule.numberSelectorFactory(game),
     difficultySelector = $('#difficulty'),
-    difficulty = parseInt(difficultySelector.val());
+    difficulty = parseInt(difficultySelector.val()),
+    remaining = difficulty;
 
   model.createCells(game, difficulty, true);
+
+  game.showWinMessage = function () {
+    var self = this;
+    self.tableElement.fadeOut('slow', function () {
+      self.tableElement.fadeIn('slow');
+    });
+  };
 
   game.selectCell = function (cell) {
     selectedCell = cell;
   };
 
   game.selectNumber = function (value) {
-    if (selectedCell !== null) {
+      var orig = selectedCell.val;
       selectedCell.setValue(value);
+      if (orig === 0 && value !== 0) {
+        remaining -= 1;
+      } else if (orig !== 0 && value === 0) {
+        remaining += 1;
+      }
       this.hideNumberSelector();
-    }
+      if (remaining === 0) {
+        this.showWinMessage();
+      }
   };
 
   game.setNumberSelector = function (element) {
@@ -57,11 +72,16 @@ function createGame () {
     self.hideNumberSelector();
     model.destroyCells();
     model.createCells(self, difficulty);
+    remaining = difficulty;
     selectedCell = null;
   };
 
   game.retryGame = function () {
     model.resetCells();
+  };
+
+  game.showSolution = function () {
+    model.showSolution();
   };
 
   return game;

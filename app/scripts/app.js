@@ -19,6 +19,10 @@ function setupButtonHandlers (game) {
   $('#difficulty').on('change', function () {
     game.setDifficulty();
   });
+
+  $('#show-solution').on('click', function () {
+    game.showSolution();
+  });
 }
 
 $(document).ready(function(){
