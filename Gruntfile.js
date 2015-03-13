@@ -24,6 +24,12 @@ module.exports = function(grunt) {
       }
     },
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+      }
+    },
+
     jshint: {
       options: {
         jshintrc: 'jshintrc.json',
@@ -33,7 +39,8 @@ module.exports = function(grunt) {
       code: {
         src: [
           'Gruntfile.js',
-          'app/scripts/**/*.js'
+          'app/scripts/**/*.js',
+          'karma.conf.js'
         ]
       },
 
