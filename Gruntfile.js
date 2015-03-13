@@ -27,6 +27,9 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
+        singleRun: true,
+        reporters: 'progress',
+        runnerPort: 9998
       }
     },
 
@@ -69,6 +72,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('build', ['clean', 'compass', 'browserify']);
