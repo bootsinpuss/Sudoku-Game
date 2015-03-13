@@ -2,13 +2,17 @@
 #game-table {
   position: relative;
   border-spacing: 0;
-  border: 4px solid #1fbad6;
+  border: 4px solid $line-color;
   border-collapse: collapse;
   color: #686868;
   font-family: Arial, sans-serif;
   font-weight: bold;
   margin-top: 1em;
   width: 100%;
+
+  &.win-table {
+    background-color: #ed145b;
+  }
 
   td {
     text-align: center;

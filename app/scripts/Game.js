@@ -19,8 +19,10 @@ function createGame () {
 
   game.showWinMessage = function () {
     var self = this;
-    self.tableElement.fadeOut('slow', function () {
-      self.tableElement.fadeIn('slow');
+    self.tableElement.fadeOut('fast', function () {
+      self.tableElement.fadeIn('fast', function() {
+        self.tableElement.addClass('win-table');
+      });
     });
   };
 
@@ -69,6 +71,7 @@ function createGame () {
 
   game.resetGame = function () {
     var self = this;
+    self.tableElement.removeClass('win-table');
     self.hideNumberSelector();
     model.destroyCells();
     model.createCells(self, difficulty);
@@ -77,6 +80,8 @@ function createGame () {
   };
 
   game.retryGame = function () {
+    this.tableElement.removeClass('win-table');
+    remaining = difficulty;
     model.resetCells();
   };
 
