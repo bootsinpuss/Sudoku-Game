@@ -31,7 +31,15 @@ function createGame () {
   };
 
   game.showNumberSelector = function () {
-    numSelector.show();
+    var valids = {},
+      pos = selectedCell.position;
+
+    for (var i = 1; i <= 9; i++) {
+      if (model.isValidFill(pos.x, pos.y, i)) {
+        valids[i] = true;
+      }
+    }
+    numSelector.show(valids);
   };
 
   game.hideNumberSelector = function () {

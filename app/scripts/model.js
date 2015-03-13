@@ -1,6 +1,18 @@
 var Cell = require('./Cell');
 
-var solutionGrid = [
+var seedGrid = [
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [4, 5, 6, 7, 8, 9, 1, 2, 3],
+  [7, 8, 9, 1, 2, 3, 4, 5, 6],
+  [2, 3, 4, 5, 6, 7, 8, 9, 1],
+  [5, 6, 7, 8, 9, 1, 2, 3, 4],
+  [8, 9, 1, 2, 3, 4, 5, 6, 7],
+  [3, 4, 5, 6, 7, 8, 9, 1, 2],
+  [6, 7, 8, 9, 1, 2, 3, 4, 5],
+  [9, 1, 2, 3, 4, 5, 6, 7, 8]
+];
+
+var gameGrid = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
   [4, 5, 6, 7, 8, 9, 1, 2, 3],
   [7, 8, 9, 1, 2, 3, 4, 5, 6],
@@ -103,38 +115,40 @@ function resetCells () {
 }
 
 function isValidFill (x, y, value) {
-  var copy = cells[x][y];
-    check = {},
+  var copy = cells[x][y],
+    set = {},
     i,
     j,
     subX,
-    subY,
-    check;
+    subY;
 
-  check = function (value) {
-    if (check[value]) {
+  var check = function (value) {
+    if (value == 0) {
+      return true;
+    }
+    if (set[value]) {
       cells[x][y].val = copy;
       return false;
     }
-    check[value] = true;
+    set[value] = true;
     return true;
   };
 
   cells[x][y].val = value;
   for (i = 0; i < 9; i++) {
-    if(!check(cells[i][j].val)) {
+    if(!check(cells[i][y].val)) {
       return false;
     }
   }
 
-  check = {};
+  set = {};
   for (i = 0; i < 9; i++) {
-    if(!check(cells[i][j].val)) {
+    if(!check(cells[x][i].val)) {
       return false;
     }
   }
 
-  check = {};
+  set = {};
   subX = Math.floor(x/3)*3;
   subY = Math.floor(y/3)*3;
   for (i = subX; i < subX + 3; i++) {
@@ -148,8 +162,17 @@ function isValidFill (x, y, value) {
   return true;
 }
 
+function copyGrid () {
+  for (var i = 0; i < 9; i++) {
+    for (var j = 0; j < 9; j++) {
+      gameGrid[i][j] = seedGrid[i][j];
+    }
+  }
+  return gameGrid;
+}
+
 function createCells (game, difficulty) {
-  var grid = solutionGrid;
+  var grid = copyGrid();
   grid = shuffleGrid(grid);
 
   cells = [];

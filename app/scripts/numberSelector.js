@@ -1,5 +1,3 @@
-var model = require('./model');
-
 var numberSelectorSingleton = null;
 
 var utils = {
@@ -31,7 +29,14 @@ function NumberSelector (game) {
   utils.setupListeners(padNumbers, padCancel, game);
 }
 
-NumberSelector.prototype.show = function () {
+NumberSelector.prototype.show = function (valids) {
+  for (var i = 1; i <= 9; i++) {
+    if (valids[i]) {
+      this.padNumbers.eq(i-1).find('div').removeClass('invalid').addClass('valid');
+    } else {
+      this.padNumbers.eq(i-1).find('div').removeClass('valid').addClass('invalid');
+    }
+  }
   this.element.show();
 };
 

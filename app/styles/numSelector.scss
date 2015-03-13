@@ -43,6 +43,14 @@
       margin: 10px 25px;
       border-bottom: 2px solid $line-color;
     }
+
+    .invalid {
+      display: none;
+    }
+
+    .valid {
+      display: block;
+    }
   }
 
   .padCancel {
