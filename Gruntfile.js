@@ -45,6 +45,24 @@ module.exports = function(grunt) {
       }
     },
 
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          require: 'coverage/blanket'
+        },
+        src: ['test/**/*.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'coverage.html'
+        },
+        src: ['test/**/*.js']
+      }
+    },
+
     watch: {
       styles: {
         files: 'app/styles/*.scss',
@@ -62,9 +80,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('build', ['clean', 'compass', 'browserify']);
   grunt.registerTask('default', ['build', 'watch']);
   grunt.registerTask('lint', ['jshint:code']);
+  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test:unit', ['mochaTest:test']);
+  grunt.registerTask('test:cover', ['mochaTest:coverage']);
 };

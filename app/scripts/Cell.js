@@ -52,4 +52,7 @@ Cell.prototype.destroy = function () {
   this.element.remove();
 };
 
-module.exports = Cell;
+module.exports = {
+  Cell: Cell,
+  utils: utils // for test purpose
+}

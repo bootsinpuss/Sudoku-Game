@@ -1,4 +1,4 @@
-var Cell = require('./Cell');
+var Cell = require('./Cell').Cell;
 
 var seedGrid = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
