@@ -50,5 +50,6 @@ module.exports = {
       numberSelectorSingleton = new NumberSelector(game);
     }
     return numberSelectorSingleton;
-  }
+  },
+  utils: utils // for testing purpose
 };
