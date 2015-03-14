@@ -5,3 +5,4 @@ build
 .sass-cache
 node_modules
 app/libs
+coverage.html

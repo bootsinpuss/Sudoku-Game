@@ -23,6 +23,7 @@
     "grunt-mocha-test": "*",
     "jshint-stylish": "^0.2.0",
     "jquery": "*",
+    "rewire": "*",
     "sinon": "*"
   }
 }
