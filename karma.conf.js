@@ -1,15 +1,12 @@
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    basePath: '',
-
     files: [
-      'app/libs/jquery/dist/jquery.js',
       'app/scripts/**/*.js',
       'test/unit/**/*.js'
     ],
 
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['mocha', 'sinon', 'sinon-chai'],
 
     reporters: ['progress', 'coverage'],
 
@@ -23,10 +20,6 @@ module.exports = function(config) {
       reporters: [
         { type: 'lcov', dir: 'test-results', subdir: 'coverage'},
       ]
-    },
-
-    logLevel: config.LOG_INFO,
-
-    browsers: ['PhantomJS']
+    }
   });
 };
