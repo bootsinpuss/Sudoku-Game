@@ -7,11 +7,6 @@
   },
   "devDependencies": {
     "bower": "*",
-    "karma": "*",
-    "karma-coverage": "*",
-    "karma-junit-reporter": "*",
-    "karma-mocha": "*",
-    "karma-sinon-chai": "*",
     "grunt": "*",
     "grunt-contrib-clean": "*",
     "grunt-browserify": "*",
@@ -22,7 +17,6 @@
     "grunt-contrib-connect": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-jshint": "*",
-    "grunt-open": "*",
     "grunt-contrib-watch": "*",
     "jshint-stylish": "^0.2.0"
   }
