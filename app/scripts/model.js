@@ -110,7 +110,7 @@ var utils = {
     }
     return gameGrid;
   }
-}
+};
 
 function destroyCells () {
   for (var i = 0; i < 9; i++) {

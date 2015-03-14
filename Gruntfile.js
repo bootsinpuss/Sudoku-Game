@@ -24,6 +24,17 @@ module.exports = function(grunt) {
       }
     },
 
+    open: {
+      run: {
+        path: 'index.html',
+        app: 'Google Chrome'
+      },
+      coverage : {
+        path : 'test-coverage/coverage.html',
+        app: 'Google Chrome'
+      }
+    },
+
     jshint: {
       options: {
         jshintrc: 'jshintrc.json',
@@ -49,7 +60,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           reporter: 'spec',
-          require: 'coverage/blanket'
+          require: 'test-coverage/blanket'
         },
         src: ['test/**/*.js']
       },
@@ -57,7 +68,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'html-cov',
           quiet: true,
-          captureFile: 'coverage.html'
+          captureFile: 'test-coverage/coverage.html'
         },
         src: ['test/**/*.js']
       }
@@ -82,11 +93,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-open');
 
   grunt.registerTask('build', ['clean', 'compass', 'browserify']);
-  grunt.registerTask('default', ['build', 'watch']);
+  grunt.registerTask('default', ['build', 'lint', 'open:run', 'watch']);
   grunt.registerTask('lint', ['jshint:code']);
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test', ['mochaTest', 'open:coverage']);
   grunt.registerTask('test:unit', ['mochaTest:test']);
-  grunt.registerTask('test:cover', ['mochaTest:coverage']);
+  grunt.registerTask('test:cover', ['mochaTest:coverage', 'oepn:coverage']);
 };

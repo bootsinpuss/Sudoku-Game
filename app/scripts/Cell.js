@@ -55,4 +55,4 @@ Cell.prototype.destroy = function () {
 module.exports = {
   Cell: Cell,
   utils: utils // for test purpose
-}
+};
