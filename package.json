@@ -6,9 +6,9 @@
     "node": ">=0.10.0"
   },
   "devDependencies": {
+    "blanket": "*",
     "bower": "*",
     "chai": "*",
-    "sinon": "*",
     "grunt": "*",
     "grunt-contrib-clean": "*",
     "grunt-browserify": "*",
@@ -21,7 +21,8 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-watch": "*",
     "grunt-mocha-test": "*",
-    "blanket": "*",
-    "jshint-stylish": "^0.2.0"
+    "jshint-stylish": "^0.2.0",
+    "jquery": "*",
+    "sinon": "*"
   }
 }
