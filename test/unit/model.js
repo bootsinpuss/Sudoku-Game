@@ -7,26 +7,46 @@ var rewire = require('rewire'),
 describe.only('#Model Module', function () {
   var sandbox = sinon.sandbox.create(),
     fakeCellConstructor,
-    fakeCell;
+    revert,
+    fakeCell,
+    fakeCells = [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [4, 5, 6, 7, 8, 9, 1, 2, 3],
+      [7, 8, 9, 1, 2, 3, 4, 5, 6],
+      [2, 3, 4, 5, 6, 7, 8, 9, 1],
+      [5, 6, 7, 8, 9, 1, 2, 3, 4],
+      [8, 9, 1, 2, 3, 4, 5, 6, 7],
+      [3, 4, 5, 6, 7, 8, 9, 1, 2],
+      [6, 7, 8, 9, 1, 2, 3, 4, 5],
+      [9, 1, 2, 3, 4, 5, 6, 7, 8]
+    ];
 
   fakeCell = {
     setToFixedCell: sandbox.stub(),
     state: null,
-    setValue: sandbox.stub()
+    setValue: sandbox.stub(),
+    val: 0
   };
+
+  for (var i = 0; i < 9; i++) {
+    for (var j = 0; j < 9; j++) {
+      fakeCells[i][j] = fakeCell;
+    }
+  }
 
   beforeEach(function () {
     fakeCellConstructor = sandbox.stub().returns(fakeCell);
-    model.__set__({
-      Cell: fakeCellConstructor
-    });
   });
 
   afterEach(function () {
     sandbox.restore();
+    revert();
   });
 
   it('#createCells', function () {
+    revert = model.__set__({
+      Cell: fakeCellConstructor
+    });
     var fakeGame = {key: 'value'},
       fakeDifficulty = 2,
       fakeGrid = [
@@ -55,6 +75,9 @@ describe.only('#Model Module', function () {
   });
 
   it('#showSolution', function () {
+    revert = model.__set__({
+      cells: fakeCells
+    });
     fakeCell.state = 'empty';
     model.showSolution();
 
