@@ -1,4 +1,5 @@
-var cellModule = require('../../app/scripts/cell'),
+var rewire = require('rewire'),
+  cellModule = rewire('../../app/scripts/cell'),
   Cell = cellModule.Cell,
   utils = cellModule.utils,
   expect = require('chai').expect,
@@ -14,6 +15,39 @@ describe('#Cell Module', function () {
 
   afterEach(function () {
     sandbox.restore();
+  });
+
+  describe('utils', function () {
+    it('#createCell', function () {
+      var appendToStub = sandbox.stub();
+      var cssStub = sandbox.stub().returns({
+        appendTo: appendToStub
+      });
+      var eqStub = sandbox.stub();
+      var revert = cellModule.__set__({
+        '$': function () {
+          return {
+            css: cssStub
+          }
+        }
+      });
+
+      var fakePosition = {x: 5, y: 2 },
+        fakeGame = {
+          tableElement: {
+            find: sandbox.stub().returns({
+              eq: eqStub
+            }),
+            width: sandbox.stub()
+          }
+        };
+
+      utils.createCell(fakePosition, fakeGame);
+      expect(fakeGame.tableElement.find.calledWith('tr')).to.be.true;
+      expect(fakeGame.tableElement.width.called).to.be.true;
+      expect(eqStub.calledWith(5)).to.be.true;
+      revert();
+    });
   });
 
   describe('Cell class', function () {
