@@ -5,12 +5,8 @@ var rewire = require('rewire'),
   expect = require('chai').expect,
   sinon = require('sinon');
 
-describe.only('#numberSelector Module', function () {
-  var sandbox;
-
-  before(function () {
-    sandbox = sinon.sandbox.create();
-  });
+describe('#numberSelector Module', function () {
+  var sandbox = sinon.sandbox.create();
 
   after(function () {
     sandbox.restore();

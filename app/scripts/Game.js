@@ -30,6 +30,10 @@ function createGame () {
     selectedCell = cell;
   };
 
+  game.getRemaining = function () {
+    return remaining;
+  };
+
   game.selectNumber = function (value) {
       var orig = selectedCell.val;
       selectedCell.setValue(value);
@@ -42,10 +46,6 @@ function createGame () {
       if (remaining === 0) {
         this.showWinMessage();
       }
-  };
-
-  game.setNumberSelector = function (element) {
-    numSelector = element;
   };
 
   game.showNumberSelector = function () {

@@ -7,11 +7,7 @@ var rewire = require('rewire'),
   sinon = require('sinon');
 
 describe('#Cell Module', function () {
-  var sandbox;
-
-  beforeEach(function () {
-    sandbox = sinon.sandbox.create();
-  });
+  var sandbox = sinon.sandbox.create();
 
   afterEach(function () {
     sandbox.restore();
