@@ -23,7 +23,6 @@
     "grunt-mocha-test": "*",
     "grunt-open": "*",
     "jshint-stylish": "^0.2.0",
-    "jquery": "*",
     "rewire": "*",
     "sinon": "*"
   }
