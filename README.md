@@ -5,6 +5,16 @@ This game project is to demonstrate the **modular Javascript architecture** with
 
 Due to the demonstration purpose, you will see some inconsistency in the implementation because I want to show as much techniques as possible, and some techniques may be overkill for this simple game.
 
+##Screenshot
+Desktop
+![Desktop](https://github.com/bootsinpuss/Sudoku-Game/blob/master/docs/desktop-screenshot.png)
+
+Tablet
+![Tablet](https://github.com/bootsinpuss/Sudoku-Game/blob/master/docs/ipad-screenshot.png)
+
+Mobile
+![Mobile](https://github.com/bootsinpuss/Sudoku-Game/blob/master/docs/mobile-screenshot.png)
+
 ##How to run
 1. Clone this project
 
